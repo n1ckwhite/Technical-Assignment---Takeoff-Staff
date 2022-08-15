@@ -17,7 +17,8 @@ export const ModalContact: FC<any> = ({ closePopup }): JSX.Element => {
     closePopup();
   };
   return (
-    <div className="modal-contacts">
+    <div>
+      <h2>Add Contact</h2>
       <form onSubmit={addContact}>
         <input
           onChange={(e) => setName(e.target.value)}

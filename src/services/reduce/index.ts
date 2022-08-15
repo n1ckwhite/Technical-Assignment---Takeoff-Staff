@@ -64,7 +64,6 @@ const contactsReducer = (state = initialState, action: any) => {
         contacts: [action.card, ...newState.contacts],
       };
     }
-
     default: {
       return state;
     }

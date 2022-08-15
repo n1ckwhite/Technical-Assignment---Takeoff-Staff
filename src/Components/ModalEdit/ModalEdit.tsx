@@ -20,6 +20,7 @@ export const ModalEdit: FC<any> = ({ closePopup, card }) => {
 
   return (
     <div>
+        <h2>Edit Profile</h2>
       <form onSubmit={onSubmit}>
         <input
           onChange={(e) => setName(e.target.value)}
