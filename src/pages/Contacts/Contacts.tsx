@@ -6,18 +6,28 @@ import { Contact } from "../../Components/Contact/Contact";
 import { Modal } from "../../Components/Modal/Modal";
 import { ModalContact } from "../../Components/ModalContact/ModalContact";
 import { ModalEdit } from "../../Components/ModalEdit/ModalEdit";
-import {
-  DELETE_CONTACT,
-  getContacts,
-} from "../../services/action";
+import { DELETE_CONTACT, getContacts } from "../../services/action";
+import { IItem } from "../../services/reduce";
 import "./Contacts.css";
 
-export const Contacts: FC<any> = (): JSX.Element => {
-  const contacts = useSelector((store: any) => store.contacts.contacts);
+interface IStore {
+  contacts: {
+    contacts: Array<IItem>;
+  };
+}
+
+export const Contacts: FC<{}> = (): JSX.Element => {
+  const contacts = useSelector((store: IStore) => store.contacts.contacts);
   const [name, setName] = useState("");
   const [popupUser, setPopupUser] = useState(false);
   const [popupEditUser, setPopupEditUser] = useState(false);
-  const [currentCard, setCurrentCard] = useState({});
+  const [currentCard, setCurrentCard] = useState({
+    name: "pending",
+    email: "pending",
+    username: "pending",
+    id: "100",
+  });
+  // Подксажите, пожалуйстка как от этого избавиться?
   const dispatch: Dispatch<any> = useDispatch();
   useEffect(() => {
     dispatch(getContacts());
@@ -27,7 +37,7 @@ export const Contacts: FC<any> = (): JSX.Element => {
     setPopupUser(true);
   };
 
-  const onDelete = (index: any) => {
+  const onDelete = (index: string) => {
     dispatch({ type: DELETE_CONTACT, indx: index });
   };
 
@@ -35,7 +45,7 @@ export const Contacts: FC<any> = (): JSX.Element => {
     setPopupUser(false);
   };
 
-  const popupEditUserOpen = (item: any) => {
+  const popupEditUserOpen = (item: IItem) => {
     setPopupEditUser(true);
     setCurrentCard(item);
   };
@@ -44,16 +54,16 @@ export const Contacts: FC<any> = (): JSX.Element => {
     setPopupEditUser(false);
   };
 
-  const filteredCards = contacts.filter((card: any) => {
+  const filteredCards = contacts.filter((card: IItem) => {
     return (
       card.name.toLowerCase().includes(name.toLowerCase()) ||
       card.email.toLowerCase().includes(name.toLowerCase())
     );
   });
 
-    if(window.localStorage.length === 0) {
-      return <Navigate to="/"/>
-    }
+  if (window.localStorage.length === 0) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="contacts">
@@ -71,7 +81,7 @@ export const Contacts: FC<any> = (): JSX.Element => {
         <p>Empty...</p>
       ) : (
         <ul className="ul">
-          {filteredCards.map((i: any) => (
+          {filteredCards.map((i: IItem) => (
             <li key={i.id}>
               <Contact
                 contact={i}

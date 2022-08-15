@@ -6,6 +6,7 @@ export const GET_CONTACTS_ERROR: "GET_CONTACTS_ERROR" = "GET_CONTACTS_ERROR";
 export const ADD_CONTACT: "ADD_CONTACT" = "ADD_CONTACT";
 export const DELETE_CONTACT: "DELETE_CONTACT" = "DELETE_CONTACT";
 export const EDIT_CONTACT: "EDIT_CONTACT" = "EDIT_CONTACT";
+
 export const getContacts = () => (dispatch: (A: Object) => Object) => {
   dispatch({
     type: GET_CONTACTS_REQUEST,

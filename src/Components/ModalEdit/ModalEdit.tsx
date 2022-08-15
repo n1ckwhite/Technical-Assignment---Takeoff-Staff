@@ -1,15 +1,21 @@
-import { FC, useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { EDIT_CONTACT } from "../../services/action";
+import { IItem } from "../../services/reduce";
 import "./Modal.css";
 
-export const ModalEdit: FC<any> = ({ closePopup, card }) => {
+interface IProps {
+  closePopup: () => void;
+  card: IItem;
+}
+
+export const ModalEdit: FC<IProps> = ({ closePopup, card }): JSX.Element => {
   const dispatch = useDispatch();
   const [name, setName] = useState(card.name);
   const [username, setUsername] = useState(card.username);
   const [email, setEmail] = useState(card.email);
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch({
       type: EDIT_CONTACT,
@@ -20,7 +26,7 @@ export const ModalEdit: FC<any> = ({ closePopup, card }) => {
 
   return (
     <div>
-        <h2>Edit Profile</h2>
+      <h2>Edit Profile</h2>
       <form onSubmit={onSubmit}>
         <input
           onChange={(e) => setName(e.target.value)}

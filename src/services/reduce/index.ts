@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 import { combineReducers } from "redux";
 import {
   ADD_CONTACT,
@@ -8,6 +9,13 @@ import {
   GET_CONTACTS_SUCCESS,
 } from "../action";
 
+export interface IItem {
+  name: string;
+  username: string;
+  email: string;
+  id: string;
+}
+
 const initialState = {
   contacts: [],
   request: false,
@@ -15,7 +23,51 @@ const initialState = {
   success: false,
 };
 
-const contactsReducer = (state = initialState, action: any) => {
+
+interface IRequest {
+  readonly type: typeof GET_CONTACTS_REQUEST;
+  request: boolean;
+}
+
+interface ISuccess {
+  readonly type: typeof GET_CONTACTS_SUCCESS;
+  contacts: Array<Object>;
+  contact: Array<Object>;
+}
+
+interface IError {
+  readonly type: typeof GET_CONTACTS_ERROR;
+  error: boolean;
+}
+
+interface IAddContatc {
+  readonly type: typeof ADD_CONTACT;
+  card: IItem;
+}
+
+interface IDeleteContact {
+  readonly type: typeof DELETE_CONTACT;
+  indx: string;
+}
+
+interface IEditContact {
+  readonly type: typeof EDIT_CONTACT;
+  card: IItem;
+}
+
+type TACtion =
+  | IRequest
+  | ISuccess
+  | IError
+  | IAddContatc
+  | IDeleteContact
+  | IEditContact;
+
+  export type AppDispatch = Dispatch<TACtion>
+
+
+
+const contactsReducer = (state = initialState, action: TACtion) => {
   switch (action.type) {
     case GET_CONTACTS_REQUEST: {
       return {
@@ -45,7 +97,7 @@ const contactsReducer = (state = initialState, action: any) => {
     case DELETE_CONTACT: {
       const newState = { ...state };
       const indexIngredient = newState.contacts.findIndex(
-        (item: any) => item.id === action.indx
+        (item: IItem) => item.id === action.indx
       );
       if (indexIngredient !== -1) {
         newState.contacts.splice(indexIngredient, 1);
