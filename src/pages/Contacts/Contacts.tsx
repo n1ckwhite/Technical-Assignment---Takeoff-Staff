@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Contact } from "../../Components/Contact/Contact";
 import { Modal } from "../../Components/Modal/Modal";
 import { ModalContact } from "../../Components/ModalContact/ModalContact";
-import { getContacts } from "../../services/action";
+import { DELETE_CONTACT, getContacts } from "../../services/action";
 import "./Contacts.css";
 
 export const Contacts: FC<any> = (): JSX.Element => {
@@ -17,6 +17,11 @@ export const Contacts: FC<any> = (): JSX.Element => {
   const popupUserOpen = () => {
     setPopupUser(true)
   }
+
+  const onDelete = (index: any) => {
+    dispatch({type: DELETE_CONTACT,indx: index})
+  }
+
   const popupUserClose = () => {
     setPopupUser(false)
   }
@@ -27,12 +32,12 @@ export const Contacts: FC<any> = (): JSX.Element => {
       <input className="input input__search" placeholder="Filter Name" />
       <button className="button button__add-contact" onClick={popupUserOpen}>Add Contact</button>
       {contacts.length === 0 ? (
-        <p>Loading...</p>
+        <p>Empty...</p>
       ) : (
         <ul className="ul">
           {contacts.map((i: any) => (
             <li key={i.id}>
-              <Contact contact={i} />
+              <Contact contact={i} onDelete={() => onDelete(i.id)}/>
             </li>
           ))}
         </ul>
