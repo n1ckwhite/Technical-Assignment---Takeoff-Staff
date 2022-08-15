@@ -1,7 +1,7 @@
 import { FC } from "react";
 import "./Contact.css";
 
-export const Contact: FC<any> = ({ contact, onDelete }): JSX.Element => {
+export const Contact: FC<any> = ({ contact, onDelete, editPopup }): JSX.Element => {
   return (
     <span className="contact-card">
       <p className="contact-card__name">{contact.name}</p>
@@ -11,7 +11,7 @@ export const Contact: FC<any> = ({ contact, onDelete }): JSX.Element => {
         <button className="button button__delete" onClick={onDelete}>
           delete
         </button>
-        <button className="button button__edit">edit</button>
+        <button className="button button__edit" onClick={editPopup}>edit</button>
       </span>
     </span>
   );
