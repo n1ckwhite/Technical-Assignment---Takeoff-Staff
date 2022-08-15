@@ -4,11 +4,14 @@ import { useDispatch } from "react-redux";
 import { Contact } from "../../Components/Contact/Contact";
 import { Modal } from "../../Components/Modal/Modal";
 import { ModalContact } from "../../Components/ModalContact/ModalContact";
+import { ModalEdit } from "../../Components/ModalEdit/ModalEdit";
 import { DELETE_CONTACT, getContacts } from "../../services/action";
 import "./Contacts.css";
 
 export const Contacts: FC<any> = (): JSX.Element => {
   const [popupUser,setPopupUser] = useState(false)
+  const [popupEditUser,setPopupEditUser] = useState(false)
+  const [currentCard,setCurrentCard] = useState({})
   const dispatch: Dispatch<any> = useDispatch();
   useEffect(() => {
     dispatch(getContacts());
@@ -25,6 +28,16 @@ export const Contacts: FC<any> = (): JSX.Element => {
   const popupUserClose = () => {
     setPopupUser(false)
   }
+
+  const popupEditUserOpen = (item: any) => {
+    setPopupEditUser(true)
+    setCurrentCard(item)
+  }
+
+  const popupEditUserClose = () => {
+    setPopupEditUser(false)
+  }
+
   const contacts = useSelector((store: any) => store.contacts.contacts);
   return (
     <div className="contacts">
@@ -37,12 +50,13 @@ export const Contacts: FC<any> = (): JSX.Element => {
         <ul className="ul">
           {contacts.map((i: any) => (
             <li key={i.id}>
-              <Contact contact={i} onDelete={() => onDelete(i.id)}/>
+              <Contact contact={i} onDelete={() => onDelete(i.id)} editPopup={() => popupEditUserOpen(i)}/>
             </li>
           ))}
         </ul>
       )}
       <Modal isOpen={popupUser} closePopup={popupUserClose}><ModalContact closePopup={popupUserClose}/></Modal>
+      <Modal isOpen={popupEditUser} closePopup={popupEditUserClose}><ModalEdit card={currentCard} closePopup={popupEditUserClose}/></Modal>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import {
   ADD_CONTACT,
   DELETE_CONTACT,
+  EDIT_CONTACT,
   GET_CONTACTS_ERROR,
   GET_CONTACTS_REQUEST,
   GET_CONTACTS_SUCCESS,
@@ -26,7 +27,7 @@ const contactsReducer = (state = initialState, action: any) => {
       return {
         ...state,
         success: true,
-        contacts: [...action.contact]
+        contacts: [...action.contact],
       };
     }
     case GET_CONTACTS_ERROR: {
@@ -38,8 +39,8 @@ const contactsReducer = (state = initialState, action: any) => {
     case ADD_CONTACT: {
       return {
         ...state,
-        contacts: [action.card,...state.contacts]
-      }
+        contacts: [action.card, ...state.contacts],
+      };
     }
     case DELETE_CONTACT: {
       const newState = { ...state };
@@ -54,6 +55,16 @@ const contactsReducer = (state = initialState, action: any) => {
         contacts: [...newState.contacts],
       };
     }
+    case EDIT_CONTACT: {
+      const newState = { ...state };
+      newState.contacts.shift();
+
+      return {
+        ...state,
+        contacts: [action.card, ...newState.contacts],
+      };
+    }
+
     default: {
       return state;
     }
