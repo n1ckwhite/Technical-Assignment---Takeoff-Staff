@@ -1,3 +1,10 @@
 .mt-10 {
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+.df {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

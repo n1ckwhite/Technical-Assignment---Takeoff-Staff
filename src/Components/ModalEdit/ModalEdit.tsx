@@ -27,7 +27,7 @@ export const ModalEdit: FC<IProps> = ({ closePopup, card }): JSX.Element => {
   return (
     <div>
       <h2>Edit Profile</h2>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="df">
         <input
           onChange={(e) => setName(e.target.value)}
           value={name}

@@ -23,7 +23,7 @@ export const ModalContact: FC<IProps> = ({ closePopup }): JSX.Element => {
   return (
     <div>
       <h2>Add Contact</h2>
-      <form onSubmit={addContact}>
+      <form onSubmit={addContact} className="df">
         <input
           onChange={(e) => setName(e.target.value)}
           value={name}
