@@ -1,0 +1,42 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.3);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+}
+
+
+
+.modal {
+    width: 500px;
+    height: 500px;
+    background: #fff;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.modal__times {
+    position: absolute;
+    border: 0;
+    height: 64px;
+    width: 64px;
+    background: transparent;
+    top: -64px;
+    right: -64px;
+    font-size: 64px;
+    line-height: 0;
+    color: #000;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.modal__times:hover {
+    color: #eee;
+}

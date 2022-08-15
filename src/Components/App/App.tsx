@@ -4,8 +4,8 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { Login } from '../pages/Login/Login';
-import { Contacts } from '../pages/Contacts/Contacts';
+import { Login } from '../../pages/Login/Login';
+import { Contacts } from '../../pages/Contacts/Contacts';
 
 function App() {
   return (

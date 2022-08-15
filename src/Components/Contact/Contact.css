@@ -1,0 +1,73 @@
+.contact-card {
+    box-sizing: border-box;
+    min-width: 300px;
+    min-height: 500px;
+    border: 3px dashed #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    transition: .2s;
+    margin-top: 20px;
+    border-radius: 10px
+}
+
+
+.contact-card:hover {
+    box-shadow: 0 0 20px silver;
+}
+
+
+.contact-card__name {
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.contact-card__username {
+    font-style: italic;
+    font-size: 20px;
+    line-height: 24px;
+}   
+
+
+.contact-card__email {
+    font-weight: bold;
+
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.button {
+    border: 0;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: .2s;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.button__delete {
+    background-color: rgb(213, 81, 81);
+    color: #fff;
+}
+
+.button__delete:hover {
+    background-color: rgb(176, 67, 67);
+}
+
+.button__edit {
+    background-color: rgb(120, 216, 120);
+}
+
+.button__edit:hover {
+    color: #fff;
+    background-color: rgb(78, 135, 78);
+}
