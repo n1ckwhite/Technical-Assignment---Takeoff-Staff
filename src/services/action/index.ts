@@ -5,7 +5,7 @@ export const GET_CONTACTS_SUCCESS: "GET_CONTACTS_SUCCESS" =
   "GET_CONTACTS_SUCCESS";
 export const GET_CONTACTS_ERROR: "GET_CONTACTS_ERROR" = "GET_CONTACTS_ERROR";
 export const ADD_CONTACT: 'ADD_CONTACT' = 'ADD_CONTACT'
-
+export const DELETE_CONTACT: 'DELETE_CONTACT' = 'DELETE_CONTACT'
 
 export const getContacts = () => (dispatch: (A: Object) => Object) => {
   dispatch({

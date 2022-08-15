@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import {
   ADD_CONTACT,
+  DELETE_CONTACT,
   GET_CONTACTS_ERROR,
   GET_CONTACTS_REQUEST,
   GET_CONTACTS_SUCCESS,
@@ -39,6 +40,19 @@ const contactsReducer = (state = initialState, action: any) => {
         ...state,
         contacts: [action.card,...state.contacts]
       }
+    }
+    case DELETE_CONTACT: {
+      const newState = { ...state };
+      const indexIngredient = newState.contacts.findIndex(
+        (item: any) => item.id === action.indx
+      );
+      if (indexIngredient !== -1) {
+        newState.contacts.splice(indexIngredient, 1);
+      }
+      return {
+        ...state,
+        contacts: [...newState.contacts],
+      };
     }
     default: {
       return state;
