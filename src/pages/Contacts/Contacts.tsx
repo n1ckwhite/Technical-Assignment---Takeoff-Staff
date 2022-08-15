@@ -1,6 +1,7 @@
 import { Dispatch, FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { Navigate } from "react-router";
 import { Contact } from "../../Components/Contact/Contact";
 import { Modal } from "../../Components/Modal/Modal";
 import { ModalContact } from "../../Components/ModalContact/ModalContact";
@@ -49,6 +50,10 @@ export const Contacts: FC<any> = (): JSX.Element => {
       card.email.toLowerCase().includes(name.toLowerCase())
     );
   });
+
+    if(window.localStorage.length === 0) {
+      return <Navigate to="/"/>
+    }
 
   return (
     <div className="contacts">
