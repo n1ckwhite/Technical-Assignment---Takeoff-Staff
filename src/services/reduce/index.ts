@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import {
+  ADD_CONTACT,
   GET_CONTACTS_ERROR,
   GET_CONTACTS_REQUEST,
   GET_CONTACTS_SUCCESS,
@@ -24,6 +25,7 @@ const contactsReducer = (state = initialState, action: any) => {
       return {
         ...state,
         success: true,
+        contacts: [...action.contact]
       };
     }
     case GET_CONTACTS_ERROR: {
@@ -31,6 +33,12 @@ const contactsReducer = (state = initialState, action: any) => {
         ...state,
         error: true,
       };
+    }
+    case ADD_CONTACT: {
+      return {
+        ...state,
+        contacts: [action.card,...state.contacts]
+      }
     }
     default: {
       return state;
