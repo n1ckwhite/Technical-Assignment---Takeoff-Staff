@@ -1,9 +1,9 @@
 import {FC} from 'react'
-
-export const Contacts: FC<any> =  () => {
+import './Contacts.css';
+export const Contacts : FC<any> =  () : JSX.Element => {
     return (
         <div>
-
+            
         </div>
     )
 }
