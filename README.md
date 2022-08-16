@@ -17,6 +17,6 @@
 ## Технологии проекта:
 - React,
 - Redux,
-- Redux Усилители,
+- Redux Thunk,
 - React-Router,
 - TypeScript
