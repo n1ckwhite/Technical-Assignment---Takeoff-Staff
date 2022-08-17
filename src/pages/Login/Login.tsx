@@ -12,7 +12,7 @@ export const Login: FC<{}> = (): JSX.Element => {
     return setLog(true);
   };
 
-  if (log || window.localStorage.length !== 0) {
+  if (log || window.localStorage.getItem('name')) {
     return <Navigate to="/contacts" />;
   }
   return (
