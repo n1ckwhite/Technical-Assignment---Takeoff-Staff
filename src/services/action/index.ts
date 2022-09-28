@@ -1,3 +1,6 @@
+import { TACtion } from "../reduce";
+import { AppThunk, RootState } from "../types";
+
 export const GET_CONTACTS_REQUEST: "GET_CONTACTS_REQUEST" =
   "GET_CONTACTS_REQUEST";
 export const GET_CONTACTS_SUCCESS: "GET_CONTACTS_SUCCESS" =
@@ -7,7 +10,8 @@ export const ADD_CONTACT: "ADD_CONTACT" = "ADD_CONTACT";
 export const DELETE_CONTACT: "DELETE_CONTACT" = "DELETE_CONTACT";
 export const EDIT_CONTACT: "EDIT_CONTACT" = "EDIT_CONTACT";
 
-export const getContacts = () => (dispatch: (A: Object) => Object) => {
+export const getContacts = (): AppThunk<void, RootState, unknown, TACtion> => {
+  return (dispatch: (A:TACtion) => void) => {
   dispatch({
     type: GET_CONTACTS_REQUEST,
   });
@@ -21,7 +25,7 @@ export const getContacts = () => (dispatch: (A: Object) => Object) => {
       }
     })
     .then((data) => {
-      dispatch({
+      return dispatch({
         type: GET_CONTACTS_SUCCESS,
         contact: data,
       });
@@ -31,3 +35,5 @@ export const getContacts = () => (dispatch: (A: Object) => Object) => {
       dispatch({ type: GET_CONTACTS_ERROR });
     });
 };
+
+}
