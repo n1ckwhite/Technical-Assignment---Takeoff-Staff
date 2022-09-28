@@ -1,7 +1,7 @@
 import { FC, FormEvent, useState } from "react";
-import { useDispatch } from "react-redux";
 import { EDIT_CONTACT } from "../../services/action";
 import { IItem } from "../../services/reduce";
+import { useAppDispatch } from "../../services/types";
 import "./Modal.css";
 
 interface IProps {
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const ModalEdit: FC<IProps> = ({ closePopup, card }): JSX.Element => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [name, setName] = useState(card.name);
   const [username, setUsername] = useState(card.username);
   const [email, setEmail] = useState(card.email);

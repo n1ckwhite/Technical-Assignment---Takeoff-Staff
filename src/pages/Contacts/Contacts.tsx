@@ -1,6 +1,4 @@
-import { Dispatch, FC, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { FC, useEffect, useState } from "react";
 import { Navigate } from "react-router";
 import { Contact } from "../../Components/Contact/Contact";
 import { Modal } from "../../Components/Modal/Modal";
@@ -8,16 +6,13 @@ import { ModalContact } from "../../Components/ModalContact/ModalContact";
 import { ModalEdit } from "../../Components/ModalEdit/ModalEdit";
 import { DELETE_CONTACT, getContacts } from "../../services/action";
 import { IItem } from "../../services/reduce";
+import { IState, useAppDispatch, useAppSelector } from "../../services/types";
 import "./Contacts.css";
 
-interface IStore {
-  contacts: {
-    contacts: Array<IItem>;
-  };
-}
+
 
 export const Contacts: FC<{}> = (): JSX.Element => {
-  const contacts = useSelector((store: IStore) => store.contacts.contacts);
+  const contacts = useAppSelector((store: IState) => store.contacts.contacts);
   const [name, setName] = useState("");
   const [popupUser, setPopupUser] = useState(false);
   const [popupEditUser, setPopupEditUser] = useState(false);
@@ -27,8 +22,7 @@ export const Contacts: FC<{}> = (): JSX.Element => {
     username: "pending",
     id: "100",
   });
-  // Подксажите, пожалуйстка как от этого избавиться?
-  const dispatch: Dispatch<any> = useDispatch();
+  const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(getContacts());
   }, [dispatch]);

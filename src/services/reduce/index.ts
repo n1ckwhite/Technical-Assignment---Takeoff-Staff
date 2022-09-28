@@ -22,11 +22,15 @@ const initialState = {
   error: false,
   success: false,
 };
-
+interface IState {
+  contacts: Array<IItem>
+  request: boolean,
+  error: boolean,
+  success: boolean,
+}
 
 interface IRequest {
   readonly type: typeof GET_CONTACTS_REQUEST;
-  request: boolean;
 }
 
 interface ISuccess {
@@ -55,19 +59,20 @@ interface IEditContact {
   card: IItem;
 }
 
-type TACtion =
+export type TACtion =
   | IRequest
   | ISuccess
   | IError
   | IAddContatc
   | IDeleteContact
-  | IEditContact;
+  | IEditContact
+  | any;
 
   export type AppDispatch = Dispatch<TACtion>
 
 
 
-const contactsReducer = (state = initialState, action: TACtion) => {
+const contactsReducer = (state: IState = initialState, action: TACtion) => {
   switch (action.type) {
     case GET_CONTACTS_REQUEST: {
       return {

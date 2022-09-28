@@ -1,13 +1,13 @@
 import { FC, FormEvent, useState } from "react";
-import { useDispatch } from "react-redux";
 import { ADD_CONTACT } from "../../services/action";
+import { useAppDispatch } from "../../services/types";
 import "./ModalContact.css";
 interface IProps {
   closePopup: () => void;
 }
 
 export const ModalContact: FC<IProps> = ({ closePopup }): JSX.Element => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch()
   const { v4: uuidv4 } = require("uuid");
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
